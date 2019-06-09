@@ -12,15 +12,14 @@ const Item = styled.li`
 const ItemLabel = styled.label`
   flex: 1;
   cursor: pointer;
+  font-size: 3rem;
 
   &:before {
     content: '⬜️';
-    font-size: 2rem;
   }
 
   input:checked + &:before {
     content: '🙏🏼';
-    font-size: 2rem;
   }
 `;
 
@@ -32,7 +31,7 @@ const Checkbox = styled.input`
 const ItemText = styled.span`
   padding: 2rem;
   margin-right: 2rem;
-  font-size: 1.2rem;
+  font-size: 2rem;
   font-family: 'Arial Black';
   color: rgba(17, 145, 207, 1);
   padding-bottom: 8px;
@@ -45,7 +44,8 @@ const TodoItem = ({
   toggleCompleted,
   deleteItem,
   editMode,
-  toggleEditMode
+  toggleEditMode,
+  editTextTo
 }) => {
   return (
     <Item>
@@ -55,27 +55,20 @@ const TodoItem = ({
             type="checkbox"
             defaultChecked={completed}
             id={`item-${itemId}`}
-            onChange={e => toggleCompleted(e.target.dataset.itemIndex)}
-            data-item-index={itemId}
+            onChange={e => toggleCompleted(itemId)}
           />
           <ItemLabel htmlFor={`item-${itemId}`}>
             <ItemText>{text}</ItemText>
           </ItemLabel>
-          <Button
-            onClick={e => toggleEditMode(e.target.dataset.itemIndex)}
-            data-item-index={itemId}
-          >
+          <Button onClick={e => toggleEditMode(itemId)} disabled={completed}>
             ✏️
           </Button>
-          <Button
-            onClick={e => deleteItem(e.target.dataset.itemIndex)}
-            data-item-index={itemId}
-          >
+          <Button onClick={e => deleteItem(e.target.dataset.itemIndex)} itemId>
             🗑
           </Button>
         </>
       ) : (
-        <EditItem text={text} />
+        <EditItem text={text} editTextTo={editTextTo} itemId={itemId} />
       )}
     </Item>
   );

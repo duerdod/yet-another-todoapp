@@ -9,7 +9,13 @@ const ItemList = styled.ul`
   list-style: none;
 `;
 
-const TodoList = ({ todos, toggleCompleted, deleteItem, toggleEditMode }) => {
+const TodoList = ({
+  todos,
+  toggleCompleted,
+  deleteItem,
+  toggleEditMode,
+  editTextTo
+}) => {
   return (
     <ItemList>
       {todos.map((todo, i) => (
@@ -22,6 +28,7 @@ const TodoList = ({ todos, toggleCompleted, deleteItem, toggleEditMode }) => {
           deleteItem={deleteItem}
           editMode={todo.editMode}
           toggleEditMode={toggleEditMode}
+          editTextTo={editTextTo}
         />
       ))}
     </ItemList>

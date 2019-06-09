@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { Form, InputTextField } from './styled/Forms';
 import Button from './styled/Button';
@@ -9,12 +9,25 @@ const EditLabel = styled.label`
   width: 100%;
 `;
 
-const EditItem = ({ text }) => {
+const EditItem = ({ text, itemId, editTextTo }) => {
+  const [textTo, handleChange] = useState(text);
   return (
-    <EditLabel>
-      <InputTextField placeholder={text} />
-      <Button>💾</Button>
-    </EditLabel>
+    <Form
+      onSubmit={e => {
+        e.preventDefault();
+        editTextTo(itemId, textTo);
+      }}
+    >
+      <EditLabel>
+        <InputTextField
+          type="text"
+          defaultValue={text}
+          placeholder={text}
+          onChange={e => handleChange(e.target.value)}
+        />
+        <Button onClick={() => editTextTo(itemId, textTo)}>💾</Button>
+      </EditLabel>
+    </Form>
   );
 };
 
