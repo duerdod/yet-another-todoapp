@@ -7,7 +7,7 @@ import Header from './Components/Header';
 import Todos from './Components/Todos';
 
 const AppContainer = styled.div`
-  margin: 0 auto;
+  margin: 6rem auto;
   padding: 20px;
   max-width: 550px;
   min-width: 500px;

@@ -9,12 +9,14 @@ const LogoText = styled.h1`
   margin: 0;
   font-weight: 800;
   margin: 0.3rem 0.5rem 0.3rem 0.5rem;
-  color: #eb1251;
-  text-shadow: 5px 5px 0 #032c57;
+  color: rgba(17, 145, 207, 1);
+  text-shadow: 3px 3px 0 rgba(17, 145, 207, 0.5),
+    5px 5px 0 rgba(17, 145, 207, 0.2);
   transform: skew(0deg, -2deg);
-  font-family: sans-serif;
+  font-family: 'Arial Black';
   letter-spacing: 0.08em;
   line-height: 4.5rem;
+  text-transform: uppercase;
 `;
 
 const Header = () => {

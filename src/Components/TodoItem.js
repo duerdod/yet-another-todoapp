@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import Button from './styled/Button';
+import EditItem from './EditItem';
 
 const Item = styled.li`
   padding: 0.8rem 0.1rem;
@@ -11,45 +13,70 @@ const ItemLabel = styled.label`
   flex: 1;
   cursor: pointer;
 
-  /* &:before {
+  &:before {
     content: '⬜️';
     font-size: 2rem;
   }
-  
-  content: '🙏🏼';
-  font-size: 2rem;
-} */
+
+  input:checked + &:before {
+    content: '🙏🏼';
+    font-size: 2rem;
+  }
 `;
 
 const Checkbox = styled.input`
-  /* display: none; */
+  display: none;
+  font-size: 1em;
 `;
 
 const ItemText = styled.span`
   padding: 2rem;
   margin-right: 2rem;
   font-size: 1.2rem;
+  font-family: 'Arial Black';
+  color: rgba(17, 145, 207, 1);
+  padding-bottom: 8px;
 `;
 
-const TodoItem = ({ text, completed, itemId, toggleCompleted, deleteItem }) => {
+const TodoItem = ({
+  text,
+  completed,
+  itemId,
+  toggleCompleted,
+  deleteItem,
+  editMode,
+  toggleEditMode
+}) => {
   return (
     <Item>
-      <ItemLabel labelFor="item">
-        <Checkbox
-          type="checkbox"
-          defaultChecked={completed}
-          name="item"
-          onChange={e => toggleCompleted(e.target.dataset.itemIndex)}
-          data-item-index={itemId}
-        />
-        <ItemText>{text}</ItemText>
-        <button
-          onClick={e => deleteItem(e.target.dataset.itemIndex)}
-          data-item-index={itemId}
-        >
-          delete
-        </button>
-      </ItemLabel>
+      {!editMode ? (
+        <>
+          <Checkbox
+            type="checkbox"
+            defaultChecked={completed}
+            id={`item-${itemId}`}
+            onChange={e => toggleCompleted(e.target.dataset.itemIndex)}
+            data-item-index={itemId}
+          />
+          <ItemLabel htmlFor={`item-${itemId}`}>
+            <ItemText>{text}</ItemText>
+          </ItemLabel>
+          <Button
+            onClick={e => toggleEditMode(e.target.dataset.itemIndex)}
+            data-item-index={itemId}
+          >
+            ✏️
+          </Button>
+          <Button
+            onClick={e => deleteItem(e.target.dataset.itemIndex)}
+            data-item-index={itemId}
+          >
+            🗑
+          </Button>
+        </>
+      ) : (
+        <EditItem text={text} />
+      )}
     </Item>
   );
 };
