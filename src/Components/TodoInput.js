@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from '@emotion/styled';
 import { Form, InputTextField } from './styled/Forms';
 
 const TodoInput = ({ addTodo }) => {
   const [todoText, handleChange] = useState('');
+
   return (
     <Form
       onSubmit={e => {

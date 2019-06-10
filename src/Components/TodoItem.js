@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from '@emotion/styled';
 import Button from './styled/Button';
 import EditItem from './EditItem';
+import { TodoContext } from './Todos';
 
 const Item = styled.li`
   padding: 0.8rem 0.1rem;
@@ -47,6 +48,8 @@ const TodoItem = ({
   toggleEditMode,
   editTextTo
 }) => {
+  const todos = useContext(TodoContext);
+  console.log({ todos });
   return (
     <Item>
       {!editMode ? (

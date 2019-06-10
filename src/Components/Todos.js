@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import Button from './styled/Button';
+
+export const TodoContext = createContext();
 
 const Todos = () => {
   const [todos, setTodo] = useState([]);
@@ -53,20 +55,26 @@ const Todos = () => {
 
   return (
     <div>
-      <TodoInput addTodo={addTodo} />
-      <TodoList
-        todos={todos}
-        toggleCompleted={toggleCompleted}
-        toggleEditMode={toggleEditMode}
-        deleteItem={deleteItem}
-        editTextTo={editTextTo}
-      />
-      <Button onClick={toggleAll} disabled={todos.length < 1}>
-        🏁
-      </Button>
-      <Button onClick={deleteAll} disabled={todos.length < 1}>
-        🗑
-      </Button>
+      <TodoContext.Provider
+        todos={{
+          todos
+        }}
+      >
+        <TodoInput addTodo={addTodo} />
+        <TodoList
+          todos={todos}
+          toggleCompleted={toggleCompleted}
+          toggleEditMode={toggleEditMode}
+          deleteItem={deleteItem}
+          editTextTo={editTextTo}
+        />
+        <Button onClick={toggleAll} disabled={todos.length < 1}>
+          🏁
+        </Button>
+        <Button onClick={deleteAll} disabled={todos.length < 1}>
+          🗑
+        </Button>
+      </TodoContext.Provider>
     </div>
   );
 };
