@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
+import Button from './styled/Button';
 
 const Todos = () => {
   const [todos, setTodo] = useState([]);
@@ -32,6 +33,24 @@ const Todos = () => {
     setTodo([...todos]);
   };
 
+  const toggleAll = () => {
+    let totalItems = todos.length;
+    let completedItems = 0;
+    let toggledTodos = [...todos];
+    todos.forEach(item => (item.completed ? completedItems++ : null));
+    if (completedItems === totalItems) {
+      toggledTodos.map(item => (item.completed = false));
+    } else {
+      toggledTodos.map(item => (item.completed = true));
+    }
+    setTodo([...toggledTodos]);
+  };
+
+  const deleteAll = () => {
+    todos.splice(0);
+    setTodo([...todos]);
+  };
+
   return (
     <div>
       <TodoInput addTodo={addTodo} />
@@ -42,8 +61,16 @@ const Todos = () => {
         deleteItem={deleteItem}
         editTextTo={editTextTo}
       />
+      <Button onClick={toggleAll} disabled={todos.length < 1}>
+        🏁
+      </Button>
+      <Button onClick={deleteAll} disabled={todos.length < 1}>
+        🗑
+      </Button>
     </div>
   );
 };
 
 export default Todos;
+
+// ␥ = dele

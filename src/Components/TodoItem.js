@@ -53,7 +53,7 @@ const TodoItem = ({
         <>
           <Checkbox
             type="checkbox"
-            defaultChecked={completed}
+            checked={completed}
             id={`item-${itemId}`}
             onChange={e => toggleCompleted(itemId)}
           />
@@ -63,7 +63,7 @@ const TodoItem = ({
           <Button onClick={e => toggleEditMode(itemId)} disabled={completed}>
             ✏️
           </Button>
-          <Button onClick={e => deleteItem(e.target.dataset.itemIndex)} itemId>
+          <Button onClick={e => deleteItem(itemId)} itemId>
             🗑
           </Button>
         </>
