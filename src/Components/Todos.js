@@ -32,6 +32,19 @@ const Todos = () => {
     setTodo([...todos]);
   };
 
+  const toggleAll = () => {
+    let itemsCompleted = 0;
+    let totalItems = todos.length;
+    let toggledTodos = [...todos];
+    todos.forEach(item => (item.completed ? itemsCompleted++ : null));
+    if (totalItems === itemsCompleted) {
+      toggledTodos.map(item => (item.completed = false));
+    } else {
+      toggledTodos.map(item => (item.completed = true));
+    }
+    setTodo([...toggledTodos]);
+  };
+  console.log(todos);
   return (
     <div>
       <TodoInput addTodo={addTodo} />
@@ -42,6 +55,7 @@ const Todos = () => {
         deleteItem={deleteItem}
         editTextTo={editTextTo}
       />
+      <button onClick={toggleAll}>toggleAll</button>
     </div>
   );
 };
