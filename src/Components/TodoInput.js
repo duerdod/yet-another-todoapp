@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from '@emotion/styled';
 import { Form, InputTextField } from './styled/Forms';
+import Button from './styled/Button';
+
+const StyledForm = styled(Form)`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
+const StyledButton = styled(Button)`
+  font-size: 1rem;
+`;
 
 const TodoInput = ({ addTodo }) => {
   const [todoText, handleChange] = useState('');
+
   return (
-    <Form
+    <StyledForm
       onSubmit={e => {
         e.preventDefault();
         if (!todoText) return;
@@ -16,11 +28,12 @@ const TodoInput = ({ addTodo }) => {
       <InputTextField
         type="text"
         name="todo"
-        placeholder="SKRIIV"
+        placeholder="Vad ska du göra?"
         onChange={e => handleChange(e.target.value)}
         value={todoText}
       />
-    </Form>
+      <StyledButton>Add</StyledButton>
+    </StyledForm>
   );
 };
 

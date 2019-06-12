@@ -15,5 +15,6 @@ export const InputTextField = styled.input`
   width: 100%;
   background: rgba(255, 255, 255, 0.4);
   padding: 0.8rem 0.4rem;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-family: 'Source Sans Pro';
 `;

@@ -13,8 +13,8 @@ const LogoText = styled.h1`
   text-shadow: 3px 3px 0 rgba(17, 145, 207, 0.5),
     5px 5px 0 rgba(17, 145, 207, 0.2);
   transform: skew(0deg, -2deg);
-  font-family: 'Arial Black';
-  letter-spacing: 0.08em;
+  font-family: 'Anton', 'Arial Black';
+  letter-spacing: 0.1em;
   line-height: 4.5rem;
   text-transform: uppercase;
 `;
