@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import styled from '@emotion/styled';
 import { Form, InputTextField } from './styled/Forms';
 import Button from './styled/Button';
+import { Add } from './styled/Icons';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -10,7 +11,8 @@ const StyledForm = styled(Form)`
 `;
 
 const StyledButton = styled(Button)`
-  font-size: 1rem;
+  font-size: 2rem;
+  margin-left: 0;
 `;
 
 const TodoInput = ({ addTodo }) => {
@@ -32,7 +34,9 @@ const TodoInput = ({ addTodo }) => {
         onChange={e => handleChange(e.target.value)}
         value={todoText}
       />
-      <StyledButton>Add</StyledButton>
+      <StyledButton>
+        <Add />
+      </StyledButton>
     </StyledForm>
   );
 };

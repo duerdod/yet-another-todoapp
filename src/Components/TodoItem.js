@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import styled from '@emotion/styled';
+import { TodoContext } from './Todos';
 import Button from './styled/Button';
 import EditItem from './EditItem';
-import { TodoContext } from './Todos';
+
+import { Edit, Check, Circle, Close } from './styled/Icons';
 
 const Item = styled.li`
   padding: 0.8rem 0.1rem;
@@ -13,15 +15,15 @@ const Item = styled.li`
 const ItemLabel = styled.label`
   flex: 1;
   cursor: pointer;
-  font-size: 3rem;
+  font-size: 2rem;
 
-  &:before {
+  /* &:before {
     content: '⬜️ ';
   }
 
   input:checked + &:before {
     content: '🙏🏼 ';
-  }
+  } */
 `;
 
 const Checkbox = styled.input`
@@ -31,7 +33,7 @@ const Checkbox = styled.input`
 
 const ItemText = styled.span`
   padding: 2rem;
-  margin-right: 2rem;
+  margin-right: 1.3rem;
   font-size: 1.5rem;
   font-family: 'Source Sans Pro';
   color: rgba(17, 145, 207, 1);
@@ -40,7 +42,6 @@ const ItemText = styled.span`
 
 const TodoItem = ({ text, completed, itemId, editMode }) => {
   const {
-    todos,
     toggleCompleted,
     toggleEditMode,
     deleteItem,
@@ -57,13 +58,14 @@ const TodoItem = ({ text, completed, itemId, editMode }) => {
             onChange={e => toggleCompleted(itemId)}
           />
           <ItemLabel htmlFor={`item-${itemId}`}>
+            {completed ? <Check /> : <Circle />}
             <ItemText>{text}</ItemText>
           </ItemLabel>
           <Button onClick={e => toggleEditMode(itemId)} disabled={completed}>
-            ✏️
+            <Edit />
           </Button>
           <Button onClick={e => deleteItem(itemId)} itemId>
-            🗑
+            <Close />
           </Button>
         </>
       ) : (

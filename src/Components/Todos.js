@@ -3,6 +3,7 @@ import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import ProgressBar from './ProgressBar';
 import Button from './styled/Button';
+import { Trash, CheckAll } from './styled/Icons';
 
 export const TodoContext = createContext();
 
@@ -76,10 +77,10 @@ const Todos = () => {
         <TodoList todos={todos} />
         <ProgressBar todos={todos} />
         <Button onClick={toggleAll} disabled={todos.length < 1}>
-          🏁
+          <CheckAll />
         </Button>
         <Button onClick={deleteAll} disabled={todos.length < 1}>
-          🗑
+          <Trash />
         </Button>
       </TodoContext.Provider>
     </div>

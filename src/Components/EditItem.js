@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
+import { TodoContext } from './Todos';
 import { Form, InputTextField } from './styled/Forms';
 import Button from './styled/Button';
+import { Save } from './styled/Icons';
 
 const EditLabel = styled.label`
   display: flex;
@@ -9,7 +11,7 @@ const EditLabel = styled.label`
   width: 100%;
 `;
 
-const EditItem = ({ text, itemId, editTextTo }) => {
+const EditItem = ({ itemId, text, editTextTo }) => {
   const [textTo, handleChange] = useState(text);
   return (
     <Form
@@ -25,7 +27,9 @@ const EditItem = ({ text, itemId, editTextTo }) => {
           placeholder={text}
           onChange={e => handleChange(e.target.value)}
         />
-        <Button onClick={() => editTextTo(itemId, textTo)}>💾</Button>
+        <Button onClick={() => editTextTo(itemId, textTo)}>
+          <Save />
+        </Button>
       </EditLabel>
     </Form>
   );
