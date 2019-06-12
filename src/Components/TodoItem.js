@@ -46,7 +46,6 @@ const TodoItem = ({ text, completed, itemId, editMode }) => {
     deleteItem,
     editTextTo
   } = useContext(TodoContext);
-  console.log(todos);
   return (
     <Item>
       {!editMode ? (

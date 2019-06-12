@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import TodoInput from './TodoInput';
 import TodoList from './TodoList';
 import ProgressBar from './ProgressBar';
@@ -7,13 +7,20 @@ import Button from './styled/Button';
 export const TodoContext = createContext();
 
 const Todos = () => {
-  const [todos, setTodo] = useState([]);
+  const [todos, setTodo] = useState(
+    JSON.parse(localStorage.getItem('todos')) || []
+  );
 
-  const addTodo = text =>
+  useEffect(() => localStorage.setItem('todos', JSON.stringify(todos)), [
+    todos
+  ]);
+
+  const addTodo = text => {
     setTodo([
       ...todos,
       { text, completed: false, editMode: false, textTo: '' }
     ]);
+  };
 
   const toggleCompleted = index => {
     todos[index].completed = !todos[index].completed;
