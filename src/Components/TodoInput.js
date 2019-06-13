@@ -30,7 +30,7 @@ const TodoInput = ({ addTodo }) => {
       <InputTextField
         type="text"
         name="todo"
-        placeholder="Vad ska du göra?"
+        placeholder="what a you suppose to deuce?"
         onChange={e => handleChange(e.target.value)}
         value={todoText}
       />

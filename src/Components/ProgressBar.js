@@ -14,13 +14,13 @@ const Indicator = styled.span`
   top: -22px;
   right: -18px;
   font-size: 0.75rem;
-  color: rgba(0, 0, 0, 0.2);
+  color: ${({ theme }) => theme.primary};
 `;
 
 const Bar = styled.div`
   width: ${p => p.width};
   height: 100%;
-  background: rgba(17, 145, 207, 1);
+  background: ${({ theme }) => theme.primary};
   transition: all 1s ease;
   border-radius: 11px;
   position: relative;

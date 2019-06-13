@@ -7,6 +7,7 @@ const Button = styled.button`
   background: none;
   border: 0;
   outline: 0;
+  color: ${({ theme }) => theme.primary};
 `;
 
 export default Button;

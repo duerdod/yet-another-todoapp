@@ -1,5 +1,7 @@
 const theme = {
-  black: '#383838'
+  black: '#383838',
+  primary: 'rgb(33, 54, 75)',
+  secondary: 'rgb(193, 81, 111)'
 };
 
 export const styleReset = `
@@ -11,20 +13,21 @@ body {
   font-family: sans-serif;
   color: #222222;
   box-sizing: border-box;
-  background: linear-gradient(
-    -90deg,
-    rgba(17, 145, 207, 0.2) 0%,
-    rgba(17, 145, 207, 0.2) 25%,
-    rgba(17, 145, 207, 0.5) 25%,
-    rgba(17, 145, 207, 0.5) 50%,
-    rgba(17, 145, 207, 0.5) 50%,
-    rgba(17, 145, 207, 0.2) 50%,
-    rgba(17, 145, 207, 0.2) 75%,
-    rgba(17, 145, 207, 0.5) 75%,
-    rgba(17, 145, 207, 0.5) 100%
+  background: radial-gradient(
+    circle,
+    rgb(193, 81, 111) 0%,
+    rgb(193, 81, 111) 25%,
+    rgb(33, 54, 75) 25%,
+    rgb(33, 54, 75) 50%,
+    rgb(47, 72, 92) 50%,
+    rgb(47, 72, 92) 75%,
+    rgb(33, 54, 75) 75%,
+    rgb(33, 54, 75) 100%
   );
-  background-size: cover;
+  background-size: 50% 200%;
 }
 `;
 
 export default theme;
+
+// background-image: linear-gradient(to right, #3cbfc4, #75bb94, #a9b076, #cea279, #db9896);

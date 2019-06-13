@@ -42,7 +42,7 @@ const ItemText = styled.span`
   margin-left: 1.3rem;
   font-size: 1rem;
   font-family: 'Source Sans Pro';
-  color: rgba(0, 0, 0, 0.8);
+  color: ${({ theme }) => theme.primary};
 
   ${p => (p.completed ? `text-decoration: line-through;` : null)}
 `;
