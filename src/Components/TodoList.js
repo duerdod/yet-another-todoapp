@@ -19,6 +19,7 @@ const TodoList = ({ todos }) => {
           completed={todo.completed}
           itemId={i}
           editMode={todo.editMode}
+          createdAt={todo.createdAt}
         />
       ))}
     </ItemList>

@@ -7,6 +7,11 @@ import { Trash, CheckAll } from './styled/Icons';
 
 export const TodoContext = createContext();
 
+const getDate = () => {
+  let now = new Date().toLocaleDateString();
+  return now;
+};
+
 const Todos = () => {
   const [todos, setTodo] = useState(
     JSON.parse(localStorage.getItem('todos')) || []
@@ -19,7 +24,13 @@ const Todos = () => {
   const addTodo = text => {
     setTodo([
       ...todos,
-      { text, completed: false, editMode: false, textTo: '' }
+      {
+        text,
+        completed: false,
+        editMode: false,
+        textTo: '',
+        createdAt: getDate()
+      }
     ]);
   };
 
@@ -61,7 +72,7 @@ const Todos = () => {
     todos.splice(0);
     setTodo([...todos]);
   };
-
+  getDate();
   return (
     <div>
       <TodoContext.Provider

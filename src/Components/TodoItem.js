@@ -7,15 +7,22 @@ import EditItem from './EditItem';
 import { Edit, Check, Circle, Close } from './styled/Icons';
 
 const Item = styled.li`
-  padding: 0.8rem 0.1rem;
+  padding: 1.2rem 0.2rem;
   font-weight: 100;
   display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 0.5rem;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #f4f4f4;
+  }
 `;
 
 const ItemLabel = styled.label`
   flex: 1;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 1rem;
 
   /* &:before {
     content: '⬜️ ';
@@ -32,15 +39,22 @@ const Checkbox = styled.input`
 `;
 
 const ItemText = styled.span`
-  padding: 2rem;
-  margin-right: 1.3rem;
-  font-size: 1.5rem;
+  margin-left: 1.3rem;
+  font-size: 1rem;
   font-family: 'Source Sans Pro';
-  color: rgba(17, 145, 207, 1);
-  padding-bottom: 8px;
+  color: rgba(0, 0, 0, 0.8);
+
+  ${p => (p.completed ? `text-decoration: line-through;` : null)}
 `;
 
-const TodoItem = ({ text, completed, itemId, editMode }) => {
+const Created = styled.span`
+  position: absolute;
+  font-size: 0.65rem;
+  color: rgba(0, 0, 0, 0.2);
+  bottom: 0;
+`;
+
+const TodoItem = ({ text, completed, itemId, editMode, createdAt }) => {
   const {
     toggleCompleted,
     toggleEditMode,
@@ -59,8 +73,9 @@ const TodoItem = ({ text, completed, itemId, editMode }) => {
           />
           <ItemLabel htmlFor={`item-${itemId}`}>
             {completed ? <Check /> : <Circle />}
-            <ItemText>{text}</ItemText>
+            <ItemText completed={completed}>{text}</ItemText>
           </ItemLabel>
+          <Created>{createdAt}</Created>
           <Button onClick={e => toggleEditMode(itemId)} disabled={completed}>
             <Edit />
           </Button>
