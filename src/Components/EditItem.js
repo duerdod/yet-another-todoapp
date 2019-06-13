@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
-import { TodoContext } from './Todos';
 import { Form, InputTextField } from './styled/Forms';
 import Button from './styled/Button';
 import { Save } from './styled/Icons';
