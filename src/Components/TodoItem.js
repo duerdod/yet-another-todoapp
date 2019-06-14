@@ -36,6 +36,7 @@ const ItemLabel = styled.label`
 const Checkbox = styled.input`
   display: none;
   font-size: 1em;
+  height: 100%;
 `;
 
 const ItemText = styled.span`
