@@ -16,6 +16,10 @@ const LogoText = styled.h1`
   letter-spacing: 0.1em;
   line-height: 4.5rem;
   text-transform: uppercase;
+  ${({ theme }) => `${theme.media[0]} 
+    font-size: 1.8rem;
+    }
+  `}
 `;
 
 const Header = () => {

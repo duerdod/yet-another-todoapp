@@ -8,6 +8,10 @@ const Button = styled.button`
   border: 0;
   outline: 0;
   color: ${({ theme }) => theme.primary};
+  ${({ theme }) => `${theme.media[0]} 
+    margin: 0 0 0 4px;
+    padding: 6px;
+  }`}
 `;
 
 export default Button;

@@ -15,7 +15,7 @@ const Item = styled.li`
   margin-bottom: 0.5rem;
 
   &:not(:last-child) {
-    border-bottom: 1px solid #f4f4f4;
+    /* border-bottom: 1px solid #f4f4f4; */
   }
 `;
 
