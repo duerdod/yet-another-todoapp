@@ -12,7 +12,7 @@ const BarWrapper = styled.div`
 const Indicator = styled.span`
   position: absolute;
   top: -22px;
-  right: -18px;
+  right: -15px;
   font-size: 0.75rem;
   color: ${({ theme }) => theme.primary};
 `;
@@ -33,13 +33,13 @@ const ProgressBar = ({ todos }) => {
     let totalCompleted = 0;
     todos.forEach(item => (item.completed ? totalCompleted++ : null));
     barLength = (totalCompleted / todos.length) * 100;
-    return barLength;
+    return parseInt(barLength);
   };
 
   return (
     <BarWrapper>
       <Bar width={`${calcBarLength(todos)}%`}>
-        <Indicator>{`${parseInt(calcBarLength(todos)).toString()}%`}</Indicator>
+        <Indicator>{`${calcBarLength(todos).toString()}%`}</Indicator>
       </Bar>
     </BarWrapper>
   );

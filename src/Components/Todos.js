@@ -1,21 +1,20 @@
 import React, { useState, createContext, useEffect } from 'react';
 import TodoInput from './TodoInput';
+import FilterButtons from './FilterButtons';
 import TodoList from './TodoList';
+import MainButtons from './MainButtons';
 import ProgressBar from './ProgressBar';
-import Button from './styled/Button';
-import { Trash, CheckAll } from './styled/Icons';
+import { getDate } from '../utils';
 
 export const TodoContext = createContext();
 
-const getDate = () => {
-  let now = new Date().toLocaleDateString();
-  return now;
-};
+const availableFilters = ['all', 'completed', 'incompleted'];
 
 const Todos = () => {
   const [todos, setTodo] = useState(
     JSON.parse(localStorage.getItem('todos')) || []
   );
+  const [filter, setFilter] = useState(availableFilters[0]);
 
   useEffect(() => localStorage.setItem('todos', JSON.stringify(todos)), [
     todos
@@ -29,13 +28,19 @@ const Todos = () => {
         completed: false,
         editMode: false,
         textTo: '',
-        createdAt: getDate()
+        createdAt: getDate(),
+        completedAt: ''
       }
     ]);
   };
 
   const toggleCompleted = index => {
     todos[index].completed = !todos[index].completed;
+    if (!todos[index].completedAt) {
+      todos[index].completedAt = getDate();
+    } else {
+      todos[index].completedAt = '';
+    }
     setTodo([...todos]);
   };
 
@@ -69,10 +74,24 @@ const Todos = () => {
   };
 
   const deleteAll = () => {
-    todos.splice(0);
-    setTodo([...todos]);
+    const deletedTodos = [...todos];
+    deletedTodos.splice(0);
+    setTodo([...deletedTodos]);
   };
-  getDate();
+
+  const showAll = () => {
+    setFilter(availableFilters[0]);
+  };
+
+  const showCompleted = () => {
+    setFilter(availableFilters[1]);
+  };
+
+  const showNotCompleted = () => {
+    setFilter(availableFilters[2]);
+  };
+
+  const buttonDisabled = todos.length < 1;
   return (
     <div>
       <TodoContext.Provider
@@ -81,18 +100,25 @@ const Todos = () => {
           toggleCompleted,
           toggleEditMode,
           deleteItem,
-          editTextTo
+          editTextTo,
+          toggleAll,
+          deleteAll,
+          showAll,
+          showCompleted,
+          showNotCompleted,
+          availableFilters,
+          buttonDisabled
         }}
       >
         <TodoInput addTodo={addTodo} />
-        <TodoList todos={todos} />
+        <FilterButtons buttonDisabled={buttonDisabled} />
+        <TodoList
+          todos={todos}
+          availableFilters={availableFilters}
+          filter={filter}
+        />
         <ProgressBar todos={todos} />
-        <Button onClick={toggleAll} disabled={todos.length < 1}>
-          <CheckAll />
-        </Button>
-        <Button onClick={deleteAll} disabled={todos.length < 1}>
-          <Trash />
-        </Button>
+        <MainButtons buttonDisabled={buttonDisabled} />
       </TodoContext.Provider>
     </div>
   );
@@ -100,4 +126,4 @@ const Todos = () => {
 
 export default Todos;
 
-// ␥ = dele
+// ␥ = dele i emojis, its a hot dog!!!!

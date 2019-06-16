@@ -48,14 +48,21 @@ const ItemText = styled.span`
   ${p => (p.completed ? `text-decoration: line-through;` : null)}
 `;
 
-const Created = styled.span`
+const CreatedOrCompleted = styled.span`
   position: absolute;
   font-size: 0.65rem;
   color: rgba(0, 0, 0, 0.2);
   bottom: 0;
 `;
 
-const TodoItem = ({ text, completed, itemId, editMode, createdAt }) => {
+const TodoItem = ({
+  text,
+  completed,
+  itemId,
+  editMode,
+  createdAt,
+  completedAt
+}) => {
   const {
     toggleCompleted,
     toggleEditMode,
@@ -76,7 +83,12 @@ const TodoItem = ({ text, completed, itemId, editMode, createdAt }) => {
             {completed ? <Check /> : <Circle />}
             <ItemText completed={completed}>{text}</ItemText>
           </ItemLabel>
-          <Created>{createdAt}</Created>
+          {completed ? (
+            <CreatedOrCompleted>{completedAt}</CreatedOrCompleted>
+          ) : (
+            <CreatedOrCompleted>{createdAt}</CreatedOrCompleted>
+          )}
+
           <Button onClick={e => toggleEditMode(itemId)} disabled={completed}>
             <Edit />
           </Button>

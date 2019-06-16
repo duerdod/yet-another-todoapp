@@ -9,19 +9,42 @@ const ItemList = styled.ul`
   list-style: none;
 `;
 
-const TodoList = ({ todos }) => {
+const Todo = ({ todos }) =>
+  todos.map((todo, i) => (
+    <TodoItem
+      key={i}
+      text={todo.text}
+      completed={todo.completed}
+      itemId={i}
+      editMode={todo.editMode}
+      createdAt={todo.createdAt}
+      completedAt={todo.completedAt}
+    />
+  ));
+
+const Todos = ({ todos, filter, availableFilters }) => {
+  if (filter === availableFilters[0]) {
+    // all
+    return <Todo todos={todos} />;
+  } else if (filter === availableFilters[1]) {
+    // completed
+    const completedTodos = todos.filter(item => item.completed);
+    return <Todo todos={completedTodos} />;
+  } else if (filter === availableFilters[2]) {
+    // incompleted
+    const incompletedTodos = todos.filter(item => !item.completed);
+    return <Todo todos={incompletedTodos} />;
+  }
+};
+
+const TodoList = ({ todos, filter, availableFilters }) => {
   return (
     <ItemList>
-      {todos.map((todo, i) => (
-        <TodoItem
-          key={i}
-          text={todo.text}
-          completed={todo.completed}
-          itemId={i}
-          editMode={todo.editMode}
-          createdAt={todo.createdAt}
-        />
-      ))}
+      <Todos
+        todos={todos}
+        filter={filter}
+        availableFilters={availableFilters}
+      />
     </ItemList>
   );
 };
