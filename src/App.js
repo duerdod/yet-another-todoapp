@@ -14,7 +14,7 @@ const AppContainer = styled.div`
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   border-radius: 5px;
   ${({ theme }) => `${theme.media[0]} 
-    margin: 0;
+    max-width: 100%;
     padding: 6px;
   }`}
 `;
