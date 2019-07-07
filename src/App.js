@@ -7,7 +7,7 @@ import Header from './Components/Header';
 import Todos from './Components/Todos';
 
 const AppContainer = styled.div`
-  margin: 6rem auto;
+  margin: 1rem auto;
   padding: 20px 20px 40px 20px;
   max-width: 550px;
   background: rgba(255, 255, 255, 0.9);
@@ -19,6 +19,16 @@ const AppContainer = styled.div`
   }`}
 `;
 
+const GitHubLink = styled.h5`
+  text-align: center;
+  font-size: 0.55rem;
+  a {
+    color: rgb(193, 81, 111);
+    text-decoration: none;
+    font-family: sans-serif;
+  }
+`;
+
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -27,6 +37,11 @@ const App = () => {
         <Header />
         <Todos />
       </AppContainer>
+      <GitHubLink>
+        <a href="https://github.com/duerdod/" target="_blank">
+          DUERDOD
+        </a>
+      </GitHubLink>
     </ThemeProvider>
   );
 };
